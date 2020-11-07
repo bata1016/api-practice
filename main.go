@@ -1,7 +1,7 @@
 package main
 
 import (
-	"db"
+	"github.com/bata1016/api-practice/db"
 
 	"github.com/gin-gonic/gin"
 )
