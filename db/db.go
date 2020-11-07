@@ -1,9 +1,10 @@
 package db
 
 import (
+	"github.com/bata1016/api-practice/entity"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" // Use PostgreSQL in gorm
-	"gorm.io/gorm"
+	// "gorm.io/gorm"
 )
 
 var (
@@ -17,6 +18,8 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
+
+	autoMigration()
 }
 
 // GetDB is called in models
@@ -29,4 +32,8 @@ func Close() {
 	if err := db.Close(); err != nil {
 		panic(err)
 	}
+}
+
+func autoMigration() {
+	db.AutoMigrate(&entity.User{})
 }
