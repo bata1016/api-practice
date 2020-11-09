@@ -45,6 +45,19 @@ func (pc Controller) Update(ctx *gin.Context) {
 		ctx.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
-		ctx.JOSN(200, pointer)
+		ctx.JSON(200, pointer)
+	}
+}
+
+// Delete action: DELETE /users/:id
+func (pc Controller) Delete(ctx *gin.Context) {
+	id := ctx.Params.ByName("id")
+	var service user.Service
+
+	if err := service.DeleteByID(id); err != nil {
+		ctx.AbortWithStatus(403)
+		fmt.Println(err)
+	} else {
+		ctx.JSON(204, gin.H{"id #" + id: "deleted"})
 	}
 }
