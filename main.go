@@ -2,17 +2,12 @@ package main
 
 import (
 	"github.com/bata1016/api-practice/db"
-
-	"github.com/gin-gonic/gin"
+	"github.com/bata1016/api-practice/server"
 )
 
 func main() {
-	router := gin.Default()
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.String(200, "Hello, World")
-	})
-	db.Init()
-	router.Run()
 
+	db.Init()
+	server.Init()
 	db.Close()
 }
