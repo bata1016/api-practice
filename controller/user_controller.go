@@ -23,6 +23,18 @@ func (pc Controller) Index(ctx *gin.Context) {
 	}
 }
 
+// Create action: POST /users
+func (pc Controller) Create(ctx *gin.Context) {
+	var service user.Service
+	pointer, err := service.CreateModel(ctx)
+	if err != nil {
+		ctx.AbortWithStatus(400)
+		fmt.Println(err)
+	} else {
+		ctx.JSON(201, pointer)
+	}
+}
+
 // Show action: GET /user/:id
 func (pc Controller) Show(ctx *gin.Context) {
 	id := ctx.Params.ByName("id")
