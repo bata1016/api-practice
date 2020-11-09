@@ -17,13 +17,14 @@ func (service Service) GetAll() ([]User, error) {
 	db := db.GetDB()
 	var user []User
 
-	if err := db.Find(&u).Error; err != nil {
+	if err := db.Find(&user).Error; err != nil {
 		return nil, err
 	}
 
 	return user, nil
 }
 
+// CreateModel is create User model
 func (service Service) CreateModel(ctx *gin.Context) {
 	db := db.GetDB()
 	var user User
@@ -33,7 +34,7 @@ func (service Service) CreateModel(ctx *gin.Context) {
 	}
 
 	if err := db.Create(&user).Error; err != nil {
-		return user, nil
+		return user, err
 	}
 
 	return user, nil
